@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<title>Road to Terrain Classification</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://www.w3schools.com/lib/w3-theme-black.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+</style>
+<body>
+
+<!-- Navbar -->
+<div class="w3-top">
+  <div class="w3-bar w3-theme w3-top w3-left-align w3-large">
+    <a class="w3-bar-item w3-button w3-right w3-hide-large w3-hover-white w3-large w3-theme-l1" href="javascript:void(0)" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+    <a href="#" class="w3-bar-item w3-button w3-theme-l1">Ubuntu Setup</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">About</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Values</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">News</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hover-white">Contact</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Clients</a>
+    <a href="#" class="w3-bar-item w3-button w3-hide-small w3-hide-medium w3-hover-white">Partners</a>
+  </div>
+</div>
+
+<!-- Sidebar -->
+<nav class="w3-sidebar w3-bar-block w3-collapse w3-large w3-theme-l5 w3-animate-left" style="z-index:3;width:250px;margin-top:43px;" id="mySidebar">
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-right w3-xlarge w3-padding-large w3-hover-black w3-hide-large" title="Close Menu">
+    <i class="fa fa-remove"></i>
+  </a>
+  <h4 class="w3-bar-item"><b>Menu</b></h4>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+  <a class="w3-bar-item w3-button w3-hover-black" href="#">Link</a>
+</nav>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- Main content: shift it to the right by 250 pixels when the sidebar is visible -->
+<div class="w3-main w3-padding-64" style="margin-left:250px">
+
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Deep learning setup for Ubuntu 16.04</h1>
+      <h2 class="w3-text-teal">Step 1: Install Ubuntu</h2>
+      <p>
+        Tips:
+      </p>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">
+        1. Partitioning the disk:
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;- First created 500MB. primary partition for boot filesystem. CHECK IF THE FIRMWARE IS EFI OR BIO-BOOTABLE (LEGACY) MODE IN BIOS (F12 on startup).
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;- Created 16GB, primary swap area
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;- Created 200GB, primary partition for root("/")
+        <br />&nbsp;&nbsp;&nbsp;&nbsp;- Created 800GB, logical partition for "/home"
+        <br />2. Disable Secure Boot from BIOS
+        <br />3. Install Google Chrome <a href="https://www.google.com/chrome/browser/desktop/index.html?brand=CHBD&gclid=CjwKEAjw1a3KBRCY9cfsmdmWgQ0SJAATUZ8bTtsC4s9IRayrGHF7Qf0YuLE2q4fq2DrZg6qUKK0R1BoCq7rw_wcB&dclid=CPCq3-GE0tQCFZYENwodVKUO_g" target="_blank">here.</a>
+        <br />4. Install text editors (Vim, Atom, Sublime-text)
+      </p>
+    </div>
+  </div>
+
+  <div class="w3-row">
+    <div class="w3-twothird w3-container">
+      <h1 class="w3-text-teal">Step 2: Prepare computer</h1>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">
+          1. sudo apt-get update
+          <br>2. sudo apt-get upgrade
+          <br />3. sudo apt-get install build-essential cmake g++ gfortran
+          <br />4. sudo apt-get install git pkg-config python-dev
+          <br />5. sudo apt-get install software-properties-common wget
+          <br />6.
+            <a href="https://ubuntuforums.org/showthread.php?t=996053">sudo apt-get autoremove</a>
+          <br />7.
+            <a href="https://askubuntu.com/questions/179955/var-lib-apt-lists-huge-in-12-04" target="_blank">sudo rm -rf /var/lib/apt/lists/*</a>
+      </p>
+    </div>
+  </div>
+
+  <div class="w3-row">
+    <div class="w3-rest w3-container">
+      <h1 class="w3-text-teal">Step 3: Install NVIDIA drivers</h1>
+      <p>
+        Make sure to install correct version of Nvidia
+        <a href="https://www.nvidia.com/Download/index.aspx?lang=en-us" target="_blank">driver</a>.
+        You can check your GPU version with
+      </p>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">lspci | grep -i nvidia
+      </p>
+      <img src="images/Screenshot1.png" alt="Screenshot"/>
+    </div>
+    <div class="w3-rest w3-container">
+      <p>
+        Next, install from a
+        <a href="https://launchpad.net/%7Egraphics-drivers/+archive/ubuntu/ppa">proprietary repository of nvidia drivers.</a>
+      </p>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">
+        sudo add-apt-repository ppa:graphics-drivers/ppa
+        <br />sudo apt-get update
+        <br />sudo apt-get install nvidia-xxx (use the correct version)
+        <br />add to PATH (/etc/environment): /usr/local/cuda-8.0/bin
+      </p>
+    </div>
+  </div>
+
+  <div class="w3-row">
+    <div class="w3-rest w3-container">
+      <h2 class="w3-text-teal">Step 4: Install CUDA</h2>
+      <p>
+        Install <a href="https://developer.nvidia.com/cuda-downloads" target="_blank">here</a>.
+        On the link, select your system and download appropriate package file. Then follow installation instructions:
+        <img src="images/Screenshot2.png" alt="Screenshot" />
+        <br />
+        <br />Add libraries to .bashrc file:
+      </p>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">
+        echo 'export PATH=/usr/local/cuda/bin:$PATH' >> ~/.bashrc
+        <br />echo 'export LD_LIBRARY_PATH=/usr/local/cuda/lib64:$LD_LIBRARY_PATH' >> ~/.bashrc
+        <br />source ~/.bashrc
+      </p>
+    </div>
+    <div class="w3-rest w3-container">
+      <p>
+        After sourcing bashrc file, the CUDA version can be verified using
+      </p>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">nvcc -V</p>
+    </div>
+    <div class="w3-rest w3-container">
+      <p>
+        Verify that Nvidia driver is installed using following command.
+      </p>
+      <p class="w3-border w3-padding-large w3-padding-32 w3-left">
+        cat /proc/driver/nvidia/version
+      </p>
+    </div>
+    <div class="w3-rest w3-container">
+      <p>
+        The output should look like below:
+        <img src="images/Screenshot3.png" alt="Screenshot" />
+      </p>
+    </div>
+  </div>
+
+  <!-- Pagination -->
+  <div class="w3-center w3-padding-32">
+    <div class="w3-bar">
+      <a class="w3-button w3-black" href="#">1</a>
+      <a class="w3-button w3-hover-black" href="journal-blog2.html">2</a>
+      <a class="w3-button w3-hover-black" href="#">3</a>
+      <a class="w3-button w3-hover-black" href="#">4</a>
+      <a class="w3-button w3-hover-black" href="#">5</a>
+      <a class="w3-button w3-hover-black" href="#">»</a>
+    </div>
+  </div>
+
+  <footer id="myFooter">
+    <div class="w3-container w3-theme-l2 w3-padding-32">
+      <h4>ASBlab USAR</h4>
+    </div>
+
+    <div class="w3-container w3-theme-l1">
+      <p>Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a></p>
+    </div>
+  </footer>
+
+<!-- END MAIN -->
+</div>
+
+<script>
+// Get the Sidebar
+var mySidebar = document.getElementById("mySidebar");
+
+// Get the DIV with overlay effect
+var overlayBg = document.getElementById("myOverlay");
+
+// Toggle between showing and hiding the sidebar, and add overlay effect
+function w3_open() {
+    if (mySidebar.style.display === 'block') {
+        mySidebar.style.display = 'none';
+        overlayBg.style.display = "none";
+    } else {
+        mySidebar.style.display = 'block';
+        overlayBg.style.display = "block";
+    }
+}
+
+// Close the sidebar with the close button
+function w3_close() {
+    mySidebar.style.display = "none";
+    overlayBg.style.display = "none";
+}
+</script>
+
+</body>
+</html>
