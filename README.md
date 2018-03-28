@@ -1,2 +1,2 @@
 # DeepLearningGems
-- handy tips for implementing deep learning
+- handy tips for beginners who want to setup deep learning environment
